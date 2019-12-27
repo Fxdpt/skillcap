@@ -29,7 +29,6 @@ final class Version20191226195216 extends AbstractMigration
         $this->addSql('ALTER TABLE category CHANGE updated_at updated_at DATETIME DEFAULT NULL');
         $this->addSql('ALTER TABLE task CHANGE updated_at updated_at DATETIME DEFAULT NULL');
         $this->addSql('ALTER TABLE type CHANGE updated_at updated_at DATETIME DEFAULT NULL');
-        $this->addSql('ALTER TABLE article CHANGE updated_at updated_at DATETIME DEFAULT NULL');
         $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL');
     }
 
@@ -39,7 +38,6 @@ final class Version20191226195216 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE skill_category');
-        $this->addSql('ALTER TABLE article CHANGE updated_at updated_at DATETIME DEFAULT \'NULL\'');
         $this->addSql('ALTER TABLE category CHANGE updated_at updated_at DATETIME DEFAULT \'NULL\'');
         $this->addSql('ALTER TABLE skill CHANGE updated_at updated_at DATETIME DEFAULT \'NULL\'');
         $this->addSql('ALTER TABLE task CHANGE updated_at updated_at DATETIME DEFAULT \'NULL\'');
