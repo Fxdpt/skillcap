@@ -1,0 +1,24 @@
+App\Entity\Category:
+    category_{1..50}:
+        name: '<word()>'
+        createdAt: '<date_create()>'
+
+App\Entity\Type:
+    type_{1..20}:
+        name: '<word()>'
+        createdAt: '<date_create()>'
+        category: '<numberBetween(1,3)>x @category_*'
+
+App\Entity\Skill:
+    skill_{1..50}:
+        name: '<sentence(6)>'
+        createdAt: '<date_create()>'
+        type: '@type_*'
+        statusRange: '0'
+
+App\Entity\Task:
+    task_{1..80}:
+        name: '<sentence(6)>'
+        createdAt: '<date_create()>'
+        status: '0'
+        skill: '@skill_*'

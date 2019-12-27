@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}
+	-
+	{{(task.id is defined) ? 'Modifier' : 'Ajouter'}}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<h1>{{skill.name}}</h1>
+	</div>
+	{{form_start(form)}}
+	<div class="row col-12">
+		{{form_label(form.name)}}
+		{{form_widget(form.name)}}
+	</div>
+	<div class="row col-12">
+		{{form_label(form.description)}}
+		{{form_widget(form.description)}}
+	</div>
+	<div class="row col-12 mt-3">
+		<button type="submit" class="btn btn-primary mr-2">{{(task.id is defined) ? 'Modifier' : 'Ajouter'}}</button>
+		<a href="{{path('skill_show',{id:skill.id})}}" class="btn btn-warning">Retour au skill</a>
+	</div>
+	{{form_end(form)}}
+
+
+{% endblock %}

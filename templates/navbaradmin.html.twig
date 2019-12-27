@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="{{path('skill_list')}}">SkillCap</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="skillDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Skill
+				</a>
+				<div class="dropdown-menu" aria-labelledby="skillDropDown">
+					<a class="dropdown-item" href="{{path('admin_skill_new')}}">Create skill</a>
+					<a class="dropdown-item" href="{{path('skill_list')}}">Show skills</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="typeDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Type
+				</a>
+				<div class="dropdown-menu" aria-labelledby="typeDropDown">
+					<a class="dropdown-item" href="{{path('admin_type_new')}}">Create type</a>
+					<a class="dropdown-item" href="{{path('type_list')}}">Show types</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="categoryDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Category
+				</a>
+				<div class="dropdown-menu" aria-labelledby="categoryDropDown">
+					<a class="dropdown-item" href="{{path('admin_category_new')}}">Create category</a>
+					<a class="dropdown-item" href="{{path('category_list')}}">Show categorys</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>

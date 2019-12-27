@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>{{type.name}}</h1>
+	<p>{{type.description}}</p>
+
+	<div class="row">
+		<h2>Categories</h2>
+	</div>
+	<ul class="list-group">
+		{% for category in type.category %}
+			<li class="list-group-item"><a href="{{path('category_show',{'id':category.id})}}">{{category.name}}</a></li>
+		{% endfor %}
+	</ul>
+
+	<div class="row">
+		<h2>Skills</h2>
+	</div>
+	<ul class="list-group">
+		{% for skill in type.skills %}
+			<li class="list-group-item"><a href="{{path('skill_show',{'id':skill.id})}}">{{skill.name}}</a></li>
+		{% endfor %}
+	</ul>
+</ul>{% endblock %}

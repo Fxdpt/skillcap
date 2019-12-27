@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TypeController!
+{% endblock %}
+
+{% block body %}
+
+	{{form_start(form)}}
+
+	<div class="row col-6">
+		{{form_label(form.name)}}
+		{{form_widget(form.name)}}
+	</div>
+	<div class="row col-6">
+		{{form_label(form.description)}}
+		{{form_widget(form.description)}}
+	</div>
+	<div class="row col-6">
+		{{form_label(form.category)}}
+		{{form_widget(form.category)}}
+	</div>
+	<div class="row col-12 mt-3">
+		<button type="submit" class="btn btn-primary mr-2">{{(type.id is defined) ? 'Update' : 'Create'}}</button>
+	</div>
+
+	{{form_end(form)}}
+
+{% endblock %}

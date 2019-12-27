@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SkillCap - List des Skills
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Description</th>
+					<th scope="col">Categories</th>
+					<th scope="col">Skills</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for type in types %}
+					<tr>
+						<th scope="row">{{type.id}}</th>
+						<td>
+							<a href="{{path('type_show',{"id":type.id})}}">{{type.name}}</a>
+						</td>
+						<td>{{type.description}}</td>
+						<td>
+							<ul class="list-group">
+								{% for category in type.category %}
+									<li class="list-group-item">
+										<a href="{{path('category_show',{"id":category.id})}}">{{category.name}}</a>
+									</li>
+								{% endfor %}
+							</ul>
+
+						</td>
+						<td>
+							<ul class="list-group">
+								{% for skill in type.skills %}
+									<li class="list-group-item">
+										<a href="{{path('skill_show',{"id":skill.id})}}">{{skill.name}}</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</td>
+						<td class="d-flex">
+							<a href="{{path('admin_type_edit',{id:type.id})}}" class="btn btn-success mr-2">Edit</a>
+							<form action="{{path('admin_type_delete',{id:type.id})}}" method="post">
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<a class="btn btn-primary" href="{{path('admin_type_new')}}">Create Type</a>
+	</div>
+{% endblock %}

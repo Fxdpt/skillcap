@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SkillCap - List des Skills
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Type</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr>
+						<th scope="row">{{category.id}}</th>
+						<td>
+							<a href="{{path('category_show',{id:category.id})}}">{{category.name}}</a>
+						</td>
+						<td>
+							{% for type in category.types %}
+								<a href="{{path('type_show',{id:type.id})}}">{{type.name}}</a>
+							{% endfor %}
+						</td>
+						<td class="d-flex">
+							<a href="{{path('admin_category_edit',{id:category.id})}}" class="btn btn-success mr-2">Edit</a>
+							<form action="{{path('admin_category_delete',{id:category.id})}}" method="post">
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<a class="btn btn-primary" href="{{path('admin_category_new')}}">Create category</a>
+	</div>
+{% endblock %}

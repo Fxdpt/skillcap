@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SkillCap - List des Skills
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Type</th>
+					<th scope="col">Categories</th>
+					<th scope="col">Completed</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for skill in skills %}
+					<tr {{ (skill.statusRange is same as(100)) ? 'class="alert alert-success"' : '' }}>
+						<th scope="row">{{skill.id}}</th>
+						<td><a href="{{path('skill_show',{id:skill.id})}}">{{skill.name}}</a></td>
+						<td>{{skill.type.name}}</td>
+						<td>
+                        {% for category in skill.categories %}
+                            <span>{{category.name}}</span>
+                        {% endfor %}                        
+                        </td>
+						<td>
+						 {{skill.statusRange}} %
+						</td>
+						<td class="d-flex">
+						<a href="{{path('admin_skill_edit',{id:skill.id})}}" class="btn btn-success mr-2">Edit</a>
+						<form action="{{path('admin_skill_delete',{id:skill.id})}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+	<a class="btn btn-primary" href="{{path('admin_skill_new')}}">Create skill</a>
+	</div>
+{% endblock %}

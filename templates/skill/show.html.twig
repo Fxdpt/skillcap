@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<h1>{{skill.name}}</h1>
+	</div>
+	<div class="row">
+		<p>
+			{% for category in skill.categories %}
+				<a href="{{path('category_show',{'id':category.id})}}">{{category.name}}</a>
+			{% endfor %}
+			in
+			<a href="{{path('type_show',{'id':skill.type.id})}}">{{skill.type.name}}</a>
+		</p>
+	</div>
+	<div class="row">
+		<p>
+			{{skill.description}}
+		</p>
+	</div>
+	<div class="row" id="progressionBar">
+		<div id="innerProgressionBar" style="width:{{skill.statusRange}}%;"></div>
+		
+	</div>
+	<div class="row mt-5">
+		<h2>Tasks</h2>
+		<span class="ml-2">
+			<a href="{{path('admin_task_new',{'skill':skill.id})}}" class="btn btn-success">Add task</a>
+		</span>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Status</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for task in skill.tasks %}
+					<tr>
+						<th scope="row">{{task.id}}</th>
+						<td><a href="{{path('task_show',{"id":task.id})}}">{{task.name}}</a></td>
+						<td>
+							{{(task.status) ? 'Complete' : 'Incomplete'}}
+						</td>
+						<td class="d-flex">
+							<a href="{{path('admin_task_edit',{'skill':skill.id,'id':task.id})}}" class="btn btn-primary mr-2">Edit</a>
+							<form action="{{path('admin_task_delete',{'skill':skill.id,'id':task.id})}}" method="post"><button type="submit" class="btn btn-danger mr-2">Delete</button></form>
+							{% if task.status %}
+							<form action="{{path('admin_task_switch_status',{'skill':skill.id,'id':task.id})}}" method="post"><button type="submit" class="btn btn-warning">Undone</button></form>
+							{% else %}
+							<form action="{{path('admin_task_switch_status',{'skill':skill.id,'id':task.id})}}" method="post"><button type="submit" class="btn btn-success">Done</button></form>
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

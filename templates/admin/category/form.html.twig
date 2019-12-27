@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Ajouter un Skill
+{% endblock %}
+
+{% block body %}
+{{form_start(form)}}
+	<div class="row col-6">
+		{{form_label(form.name)}}
+		{{form_widget(form.name)}}
+	</div>
+	<div class="row col-12">
+		{{form_label(form.types)}}
+		{{form_widget(form.types)}}
+	</div>
+    <div class="row col-12 mt-3">
+        <button type="submit" class="btn btn-primary mr-2">{{(category.id is defined) ? 'Modifier' : 'Ajouter'}}</button>    
+    </div>
+
+{{form_end(form)}}
+{% endblock %}
